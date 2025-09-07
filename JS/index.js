@@ -23,6 +23,9 @@ catBtn.addEventListener('click', () => {
 // left Categories list close
 
 
+
+
+
 function get(obj, path, fallback = "") {
   const keys = path.split(".");
   let current = obj;
@@ -110,41 +113,61 @@ function get(obj, path, fallback = "") {
 
 
 
-    // Render cards
 
-    function renderCards(items, forcedCategory=''){
-      if(!items?.length){cardsEl.innerHTML=emptyCard();return;}
-      cardsEl.innerHTML=items.map(it=>{
-        const img=get(it,'image',get(it,'img',''));
-        const name=get(it,'name',get(it,'title','Untitled'));
-        const cat=forcedCategory||get(it,'category','Tree');
-        const price=get(it,'price',get(it,'cost',500));
-        const desc=get(it,'description','A beautiful tree.').toString().slice(0,110)+'...';
-        const payload=encodeURIComponent(JSON.stringify({img,name,category:cat,price,description:get(it,'description','')}));
-        return `
-          <div class="bg-white rounded-2xl shadow overflow-hidden">
-            <!-- image with gap -->
-            <div class="bg-gray-50 p-3">
-              <div class="h-40 w-full rounded-xl overflow-hidden ring-1 ring-slate-200 bg-white">
-                <img src="${img}" alt="${name}" class="h-full w-full object-cover object-center"/>
-              </div>
-            </div>
-            <div class="px-4 pb-4 space-y-2">
-              <a href="javascript:void(0)" data-open='${payload}' class="block text-lg font-semibold hover:text-green-700">
-                ${name}
-              </a>
-              <span class="inline-block text-xs px-2 py-1 rounded-full bg-green-100 text-green-700">${cat}</span>
-              <p class="text-sm text-slate-600">${desc}</p>
-              <div class="flex items-center justify-between pt-2">
-                <span class="font-semibold">৳${price}</span>
-                <button class="px-3 py-1.5 rounded-lg bg-green-600 text-white text-sm hover:bg-green-700" data-add='${payload}'>
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          </div>`;
-      }).join('');
-    }
+// Render cards
+function renderCards(items, forcedCategory=''){
+  if(!items?.length){cardsEl.innerHTML=emptyCard();return;}
+
+  cardsEl.innerHTML = items.map(it=>{
+    const img  = get(it,'image',get(it,'img',''));
+    const name = get(it,'name',get(it,'title','Untitled'));
+    const cat  = forcedCategory || get(it,'category','Tree');
+    const price= get(it,'price',get(it,'cost',500));
+    const desc = get(it,'description','A beautiful tree.').toString().slice(0,110)+'...';
+
+    const payload = encodeURIComponent(JSON.stringify({
+      img,name,category:cat,price,description:get(it,'description','')
+    }));
+
+    return `
+<div class="bg-white rounded-2xl shadow overflow-hidden">
+  <!-- image (size অপরিবর্তিত) -->
+  <div class="bg-gray-50 p-3">
+    <div class="h-40 w-full rounded-xl overflow-hidden ring-1 ring-slate-200 bg-white">
+      <img src="${img}" alt="${name}" class="h-full w-full object-cover object-center"/>
+    </div>
+  </div>
+
+  <!-- content -->
+  <div class="px-4 pb-4 space-y-2">
+    <!-- heading (modal open) -->
+    <a href="javascript:void(0)" data-open='${payload}'
+       class="block text-lg font-semibold hover:text-green-700">
+      ${name}
+    </a>
+
+    <!-- paragraph -->
+    <p class="text-sm text-slate-600">${desc}</p>
+
+    <!-- row: category (left) | price (right) -->
+    <div class="flex items-center justify-between pt-1">
+      <span class="inline-block text-xs px-2 py-1 rounded-full bg-green-100 text-green-700">
+        ${cat}
+      </span>
+      <span class="font-semibold">৳${price}</span>
+    </div>
+
+    <!-- full-width Add to Cart -->
+    <button class="w-full mt-2 px-3 py-2 rounded-lg bg-green-600 text-white text-sm hover:bg-green-700"
+            data-add='${payload}'>
+      Add to Cart
+    </button>
+  </div>
+</div>`;
+  }).join('');
+}
+
+
 
 
 

@@ -9,7 +9,19 @@
   });
 
   // Toggle Script close
-  
+
+
+// left Categories list start
+
+const catBtn = document.getElementById('cat-menu-btn');
+const catList = document.getElementById('cat-list');
+
+catBtn.addEventListener('click', () => {
+  catList.classList.toggle('hidden');
+});
+
+// left Categories list close
+
 
 function get(obj, path, fallback = "") {
   const keys = path.split(".");

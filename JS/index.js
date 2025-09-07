@@ -1,4 +1,16 @@
 
+// Toggle Script start
+
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('menu');
+
+  btn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+
+  // Toggle Script close
+  
+
 function get(obj, path, fallback = "") {
   const keys = path.split(".");
   let current = obj;

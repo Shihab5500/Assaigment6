@@ -8,21 +8,47 @@
 </head>
 <body class="bg-green-50 text-slate-800">
 
-<!-- navbar start -->
-<div class="w-full px-4 sm:px-6 md:px-10 lg:px-32 py-4 md:py-6 bg-green-700 flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-0 text-center md:text-left">
-  <h1 class="text-white font-bold text-xl md:text-2xl">Green Earth</h1>
+<!-- Navbar start -->
+<nav class="w-full h-16 bg-green-700 flex items-center justify-between px-4 md:px-12 p-[50px] lg:pl-[150px] lg:pr-[150px]">
+  
+  <!-- Left Heading -->
+  <div class="text-white font-bold text-lg">Green Earth</div>
 
-  <div class="flex flex-col md:flex-row items-center md:items-center gap-2 md:gap-6">
-    <a class="text-white text-sm md:text-base font-medium font-['Inter']" href="">About</a>
-    <a class="text-white text-sm md:text-base font-medium font-['Inter']" href="">Gallery</a>
-    <a class="text-white text-sm md:text-base font-medium font-['Inter']" href="">Plant a Tree</a>
+  <!-- Middle Menu only large screens -->
+  <div class="hidden md:flex flex-1 justify-center items-center gap-6">
+    <a href="#about" class="text-white hover:text-yellow-400">About</a>
+    <a href="#gallery" class="text-white hover:text-yellow-400">Gallery</a>
+    <a href="#plant" class="text-white hover:text-yellow-400">Plant a Tree</a>
   </div>
 
-  <div class="px-4 md:px-5 py-2 md:py-3 bg-yellow-400 rounded-full flex justify-center items-center">
-    <button class="text-green-700 text-sm md:text-base font-medium font-['Inter']">Plant a Tree</button>
+  <!-- Right Side Button only large screens -->
+  <div class="hidden md:flex">
+    <button class="bg-yellow-400 hover:bg-yellow-500 text-green-700 md:text-base font-medium font-['Inter'] px-4 py-2 rounded-full transition">
+      Plant a Tree
+    </button>
   </div>
+
+  <!-- Mobile Menu Button -->
+  <div class="md:hidden">
+    <button id="menu-btn" class="text-white focus:outline-none">
+      <!-- Hamburger Icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Dropdown Menu -->
+<div id="menu" class="md:hidden hidden bg-green-800">
+  <a href="#about" class="block px-4 py-2 text-white hover:bg-green-700">About</a>
+  <a href="#gallery" class="block px-4 py-2 text-white hover:bg-green-700">Gallery</a>
+  <a href="#plant" class="block px-4 py-2 text-white hover:bg-green-700">Plant a Tree</a>
+  <button class="w-full text-left px-4 py-2 bg-yellow-400 hover:bg-yellow-500 text-green-900 font-semibold transition">
+    Donate
+  </button>
 </div>
-<!-- navbar close -->
+<!-- Navbar close -->
 
 
 
@@ -117,7 +143,7 @@
 
 
 
-<!-- About start -->
+<!-- About the Campaign start -->
 <h1 class="text-center text-gray-800 text-2xl sm:text-3xl font-semibold leading-9 md:leading-10 pt-7">
   About the Campaign
 </h1>
@@ -139,7 +165,7 @@
     </ul>
   </div>
 </div>
-<!-- About close -->
+<!-- About the Campaign close -->
 
 
 
@@ -205,7 +231,7 @@
       <select 
         class="w-full px-4 py-3 rounded-md border bg-white border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-gray-600"
       >
-        <option>Number of Trees</option>
+        <option disabled selected>Number of Trees</option>
         <option>1 Tree - $5</option>
         <option>5 Trees - $25</option>
         <option>10 Trees - $50</option>
